@@ -10,3 +10,18 @@ Update works by adding item with the same url via POST.
 Annotations and created_at stay in place.
 
 Rate limit is said to be 1 per second / apikey
+* Install notes
+** Matplotlib
+Install matplotlib from apt and symlink from dist-packages to virtualenv site-packages.
+
+sudo apt-get install python3-matplotlib
+
+ln -s /usr/lib/python3/dist-packages/matplotlib ~/.virtualenvs/diigo/lib/python3.4/site-package
+
+ln -s /usr/lib/python3/dist-packages/dateutil ~/.virtualenvs/diigo/lib/python3.4/site-packagess
+
+pip install pyparsing numpy
+* Notes
+** xml vulnerabilities
+https://docs.python.org/3/library/xml.html
+defusedxml is a pure Python package with modified subclasses of all stdlib XML parsers that prevent any potentially malicious operation. Use of this package is recommended for any server code that parses untrusted XML data. The package also ships with example exploits and extended documentation on more XML exploits such as XPath injection.
