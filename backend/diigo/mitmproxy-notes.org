@@ -1,0 +1,33 @@
+# On Linux Mint 17.3
+sudo apt-get install python-libxml2 python-libxslt1 libxslt-dev libssl-dev
+sudo apt-get --reinstall install python-pyasn1 python-pyasn1-modules
+
+
+sudo mv /usr/lib/python2.7/dist-packages/OpenSSL /usr/lib/python2.7/dist-packages/OpenSSL.bak
+
+sudo pip install mitmproxy ipaddress hyperframe hpack
+
+
+
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8080
+
+** Modification request
+2016-02-14 22:44:42 POST https://www.diigo.com/kree/pv=1/ct=android?cmd=uploadItems
+                         ← 200 text/plain 869B 342ms
+                Request                                 Response                                 Detail
+Content-Length:  789                                                                                                 
+Content-Type:    multipart/form-data; boundary=_rOLSsCYOdWelPxfc2eehGr-8IIGhUWhkBVsK2Ew                              
+host:            www.diigo.com                                                                                       
+Connection:      Keep-Alive                                                                                          
+Cookie:          diigoandlogincookie=android-.-jasalt-.-android; CHKIO=71b7adf639c8a4e01fcff0c6a0206e5b;             
+                 _smasher_session=7d92765d79928b26be5d2f3a27a22342                                                   
+Multipart form                                                                                                 [m:Auto]
+Form data:
+
+json: {"items":[{"cmd":2,"local_updated_at":1455482683,"local_created_at":1453102588,"desc":"","url":"https://shaunlebr
+on.github.io/parinfer/","server_id":294257937,"outliners_id":[],"folder_server_id":[],"server_created_at":1453102588,"t
+itle":"Parinfer - simpler Lisp editing","mode":2,"server_updated_at":1453102588,"tags":"clojure,lisp,\"text
+editor\",ide,programming","type":3,"local_id":377,"unread":0}]}
+cv:   3.2.1

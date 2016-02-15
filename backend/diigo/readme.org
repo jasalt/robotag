@@ -1,0 +1,12 @@
+* Workflow
+1) Download json with backup/diigo-backup.py
+2) Search for missing tags with process.py
+=python process.py=
+* Tasks
+** TODO Build a complete hierarchy
+** TODO Add missing tags via API
+* Official API
+Update works by adding item with the same url via POST.
+Annotations and created_at stay in place.
+
+Rate limit is said to be 1 per second / apikey
