@@ -1,0 +1,22 @@
+* To Do
+- Schema
+- Database migrations
+- Views
+- Tests
+- API
+
+* Flask extensions & other libraries to check out
+- https://github.com/mher/chartkick.py
+  For JS charts
+
+- https://bitbucket.org/leafstorm/flask-uploads/
+  For file uploads (if WTForms is not enough)
+  
+- https://github.com/jfinkels/flask-restless/
+  For API implementation
+  
+- Something for testing, 
+  - https://github.com/jarus/flask-testing/
+  - http://webtest.readthedocs.org/en/latest/
+  - https://github.com/coderanger/flask-zen/ 
+  - https://github.com/coderanger/pyzen

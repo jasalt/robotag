@@ -1,0 +1,25 @@
+% extends "base.html"
+
+% block head
+{{ super() }}  <!-- Retain block content from parent -->
+<link href="{{url_for('static', filename='invoice-frontend-style.css')}}" rel="stylesheet">
+% endblock
+
+% block page_content
+
+<h1>Invoice generator</h1>
+
+<div class="invoice-container">
+  <div id="react-main">TODO Load react component here</div>
+</div>
+
+<button class="btn btn-success pull-right">TODO Save</button>
+<button class="btn btn-danger pull-right ">TODO Clear </button>
+
+% endblock
+
+{% block scripts %}
+{{ super() }}
+<script src="{{url_for('static', filename='invoice-frontend-bundle.js')}}"></script>
+
+{% endblock %}

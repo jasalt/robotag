@@ -1,0 +1,54 @@
+% extends "base.html"
+
+% block page_content
+
+<h1>Invoices</h1>
+
+<a class="btn btn-default" href="{{url_for('invoice.generator')}}">Create new invoice</a>
+
+<div class="table-responsive">
+  <h3>Previous mock invoices</h3>
+  <table class="table table-hover">
+    <tr>
+      <th>Created at</th>
+      <th>Due date</th>
+      <th>Recipient</th>
+      <th>Sum</th>
+      <th>State</th>
+    </tr>
+    <tr>
+      <td>14.2.2015</td>
+      <td>21.2.2015</td>
+      <td>Hillary Clinton</td>
+      <td>2000$</td>
+      <td>Draft</td>
+    </tr>
+    <tr class="active">
+      <td>10.2.2015</td>
+      <td>18.2.2015</td>
+      <td>Bill Gates</td>
+      <td>444$</td>
+      <td>Waiting validation</td>
+    </tr>
+    <tr class="info">
+      <td>14.1.2013</td>
+      <td>20.1.2013</td>
+      <td>Rich Hickey</td>
+      <td>152$</td>
+      <td>Sent</td>
+    </tr>
+    <tr class="success">
+      <td>10.5.2009</td>
+      <td>22.5.2009</td>
+      <td>Carl Johnson</td>
+      <td>30000$</td>
+      <td>Paid</td>
+    </tr>
+  </table>
+</div>
+
+<!-- TODO show table of previous invoices with links to invoice details page -->
+
+
+
+% endblock

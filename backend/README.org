@@ -1,0 +1,90 @@
+* Overview
+Project structure is more or less based on:
+- O'Reilly book example https://github.com/miguelgrinberg/flasky
+- https://github.com/hansonkd/FlaskBootstrapSecurity template project
+
+Some main components:
+- Jinja2 templating, Flask-Bootstrap, WTForms
+- ORM is [[https://peewee.readthedocs.org/en/latest/][Peewee]], which is advertised as being minimal and well documented.
+- [[https://pythonhosted.org/Flask-Security/][Flask-Security]] (based on Flask-Login, Flask-Principal etc.) handles role based user authentication, registration, mailing etc.
+- [[https://github.com/mrjoes/flask-admin/][Flask-Admin]] for administrative CRUD views, embedded to custom template
+
+Some interesting, yet to be configured, extensions are listed in [[file:TODO.org][TODO.org]]
+
+* Development guide
+Tested on Linux Mint 17.2 (Ubuntu 14.04) and OSX 10.10 (homebrew python3)
+
+Distribution provided prerequirements:
+- Python 3.4 with development package
+- PostgreSQL development package libpq-dev
+- [[https://en.wikipedia.org/wiki/Pip_(package_manager)][pip]] package manager
+=sudo apt-get install python3-pip python3-dev libpq-dev=
+
+Some (optional) tooling provided by pip:
+- [[http://docs.python-guide.org/en/latest/dev/virtualenvs/][virtualenv]] Python project dependency isolation tool
+- [[https://virtualenvwrapper.readthedocs.org/en/latest/][virtualenvwrapper]] virtualenv helper (supported by [[https://www.gnu.org/software/emacs/][Emacs]] [[https://github.com/jorgenschaefer/elpy/wiki][ELPY Python IDE]])
+=pip install virtualenv virtualenvwrapper=
+=mkvirtualenv -p /usr/bin/python3.4 koodilehto-intra=
+
+Emacs ELPY pip dependencies can be symlinked from global site-packages dir to virtualenv specific site-packages dir. Consult (elpy-config) and [[https://elpy.readthedocs.org/en/latest/introduction.html][installation docs]] for more info.
+
+#+BEGIN_SRC sh
+sudo pip3 install jedi rope_py3k importmagic autopep8
+cd $VIRTUAL_ENV/lib/python3.4/site-packages
+ln -s /usr/local/lib/python3.4/site-packages/jedi .
+ln -s /usr/local/lib/python3.4/site-packages/autopep8.py .
+ln -s /usr/local/lib/python3.4/site-packages/importmagic .
+ln -s /usr/local/lib/python3.4/site-packages/rope .
+#+END_SRC
+
+
+=mkvirtualenv= command activates the created virtual environment by default. Later it can be activated with =workon koodilehto-intra=
+
+Install project dependencies =pip install -r requirements.txt=.
+
+Pip may throw permission error about pip cache folder when installing. Fix by running =sudo chown -R <your username>:<your username> $HOME/.cache/pip= on Linux or =sudo chown -R <your username> $HOME/Library/Caches/pip= on OSX.
+
+* Initialize database
+=./manage.py reset_db= drops and creates tables
+=./manage.py populate_db= adds user accounts for testing
+
+There are 4 types of user levels. Accounts for testing:
+| username   | email                  | password | roles |
+|------------+------------------------+----------+-------|
+| testmember | testmember@example.com | password |       |
+| testboard  | testboard@example.com  | password | board |
+| testadmin  | testadmin@example.com  | password | admin |
+
+=anonymous < member < board < admin=
+
+- TODO currently works only with 'development' configuration
+* Running development server
+Command =python manage.py runserver= starts app in Flask development server on localhost:5000.
+
+Host and port can be changed with options -h and -p eg. =python manage.py runserver -h 0.0.0.0 -p 8008=.
+
++Command =python app/server.py run= runs development server without debugger on 0.0.0.0:5001, listening external requests. Exposing server with debugger enabled is dangerous.+
+
+* Testing & utility commands
+=./manage.py test= run tests
+=./manage.py test --coverage= run tests, show test coverages
+
+=./manage.py list_routes= shows registered routes
+
+Tests are to be written..
+* To Do
+See [[file:TODO.org][TODO.org]] for overview and [[grep:TODO\|HACK]['TODO' and 'HACK']] codetags in source code.
+
+Protip: Evaluate following emacs-lisp for interactive grep-links.
+
+#+BEGIN_SRC emacs-lisp
+
+(org-add-link-type
+ "grep" 'endless/follow-grep-link)
+
+(defun endless/follow-grep-link (regexp)
+  "Run `rgrep' with REGEXP as argument."
+  (grep-compute-defaults)
+  (rgrep regexp "*" (expand-file-name "./")))
+
+#+END_SRC
