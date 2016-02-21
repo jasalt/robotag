@@ -64,7 +64,8 @@ def process_bookmark(bm):
 
     if missing_tags != []:
         # set thing is a quick hack to clean out duplicates.
-        all_tags = tags + list(set(missing_tags))
+        missing_tags = list(set(missing_tags))
+        all_tags = tags + missing_tags
         print("Updating bookmark %s with tags %s" % (bm['url'], missing_tags))
         request = diigo.bookmark_add(url=bm['url'],
                                      shared=bm['shared'],

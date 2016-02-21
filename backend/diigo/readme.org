@@ -1,7 +1,9 @@
 * Workflow
 1) Download json with backup/diigo-backup.py
-2) Search for missing tags with process.py
+=python diigo-backup/diigo-backup.py -v 0 -u jasalt -a XXX -p XXX  > jasalt.json=
+2) Search process missing tags with process.py
 =python process.py=
+
 * Tasks
 ** TODO Build a complete hierarchy
 ** TODO Add missing tags via API
