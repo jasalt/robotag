@@ -2,10 +2,16 @@
 # Process loaded JSON and look for missing connections
 
 import json
+from time import sleep
 from pprint import pprint
 import networkx as nx
 
-graph = nx.read_graphml('/home/jarkko/dev/tag-hierarchy-enforcer/backend/diigo/graphs/full-test.graphml')
+from pydiigo import DiigoApi
+from secrets import USERNAME, PASSWORD, APIKEY
+
+diigo = DiigoApi(user=USERNAME, password=PASSWORD, apikey=APIKEY)
+
+graph = nx.read_graphml('./graphs/full-test.graphml')
 
 import itertools
 def get_successors(tag):
@@ -43,8 +49,9 @@ stats = Statistics()
 def process_bookmark(bm):
     # what about bm with empty tags
     tags = bm['tags'].split(',')
+    missing_tags = []
 
-    # Add all missing tags according to graph
+    # Check for all missing tags according to graph
     for tag in tags:
         connections = get_successors(tag)
         if connections is None:
@@ -52,8 +59,19 @@ def process_bookmark(bm):
         for con in connections:
             if con not in tags:
                 # add missing connection
-                tags.append(con)
+                missing_tags.append(con)
                 stats.add_tag(con)
+
+    if missing_tags != []:
+        # set thing is a quick hack to clean out duplicates.
+        all_tags = tags + list(set(missing_tags))
+        print("Updating bookmark %s with tags %s" % (bm['url'], missing_tags))
+        request = diigo.bookmark_add(url=bm['url'],
+                                     shared=bm['shared'],
+                                     tags=",".join(all_tags))
+        if request['code'] != 1:
+            import ipdb; ipdb.set_trace()
+        
 
     # additional_tags = []
 
@@ -65,6 +83,7 @@ def read_missing():
 
         for bm in data:
             process_bookmark(bm)
+            sleep(0.9)
 
         print('Found %s missing tags' % stats.total_count())
         pprint(stats.new_tags)
