@@ -3,7 +3,6 @@ from secrets import USERNAME, PASSWORD, APIKEY
 
 diigo = DiigoApi(user=USERNAME, password=PASSWORD, apikey=APIKEY)
 
-
 # Can post with created_at not being this moment
 
 old_bookmark = diigo.bookmarks_find(filter='all', tags='asdf')

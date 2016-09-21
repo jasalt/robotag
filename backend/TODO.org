@@ -4,7 +4,7 @@
 - Views
 - Tests
 - API
-
+  
 * Flask extensions & other libraries to check out
 - https://github.com/mher/chartkick.py
   For JS charts

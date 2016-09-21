@@ -1,3 +1,5 @@
+=DISCLAIMER This subdir was forked and hasn't been touched/integrated yet in any way.=
+
 * Overview
 Project structure is more or less based on:
 - O'Reilly book example https://github.com/miguelgrinberg/flasky
@@ -10,7 +12,6 @@ Some main components:
 - [[https://github.com/mrjoes/flask-admin/][Flask-Admin]] for administrative CRUD views, embedded to custom template
 
 Some interesting, yet to be configured, extensions are listed in [[file:TODO.org][TODO.org]]
-
 * Development guide
 Tested on Linux Mint 17.2 (Ubuntu 14.04) and OSX 10.10 (homebrew python3)
 
@@ -88,3 +89,7 @@ Protip: Evaluate following emacs-lisp for interactive grep-links.
   (rgrep regexp "*" (expand-file-name "./")))
 
 #+END_SRC
+* Misc 
+** XML vulnerabilities
+https://docs.python.org/3/library/xml.html
+defusedxml is a pure Python package with modified subclasses of all stdlib XML parsers that prevent any potentially malicious operation. Use of this package is recommended for any server code that parses untrusted XML data. The package also ships with example exploits and extended documentation on more XML exploits such as XPath injection.

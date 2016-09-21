@@ -21,7 +21,6 @@ ipython-genutils==0.1.0
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
-networkx==1.11
 passlib==1.6.5
 path.py==8.1.2
 peewee==2.6.3
@@ -29,7 +28,6 @@ pep8==1.7.0
 pexpect==4.0.1
 pickleshare==0.6
 ptyprocess==0.5.1
-pydiigo==0.5
 simplegeneric==0.8.1
 tabulate==0.7.5
 traitlets==4.1.0
