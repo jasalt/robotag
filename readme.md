@@ -6,7 +6,8 @@ Eg. bookmark with tags `flask` gets tagged `python`, `web` and `programming` aut
 
 Multiplatform free but not open source [Yed Graph Editor](https://www.yworks.com/products/yed) is used for generating hierarchy schema in [graphml-format](http://graphml.graphdrawing.org/) that is readed by [Python NetworkX library](https://networkx.github.io/). [NetworkX](https://networkx.github.io/) then compares exported user bookmark json-file to a given graphml-schema and updates missing tags accordingly.
 
-    TODO video and a screenshot
+## [Video demo on Youtube](https://www.youtube.com/watch?v=d8GXXdiA__I)
+[![Youtube Demo Video](https://raw.github.com/jasalt/robotag/master/diigo/misc/demo.gif)](https://www.youtube.com/watch?v=d8GXXdiA__I)
 
 # Workflow
 Export diigo bookmarks into a json file.
