@@ -1,4 +1,4 @@
-    WARNING broken code & landmines ahead
+> Repo is cluttered with some useless files, see `diigo/process.py` for the main functionality.
 
 Proof of concept utility for enforcing user customizable tag hierarchy on a social bookmarking service Diigo data. This makes the tag-based datastorage more easily searchable and allows faster tagging by automated tag expansion.
 
